@@ -14,12 +14,15 @@ export const getLeads = async (): Promise<Lead[]> => {
   }
 
   return data.map(lead => ({
-    ...lead,
     id: lead.id,
     customerName: lead.customer_name,
     serviceNeeded: lead.service_needed,
     siteLocation: lead.site_location,
+    status: lead.status as LeadStatus,
     assignedTo: lead.assigned_to,
+    priority: lead.priority || 'medium',
+    source: lead.source,
+    notes: lead.notes,
     createdAt: lead.created_at,
     updatedAt: lead.updated_at,
   }));
@@ -41,11 +44,15 @@ export const getLeadById = async (id: string): Promise<Lead | null> => {
   if (!data) return null;
 
   return {
-    ...data,
+    id: data.id,
     customerName: data.customer_name,
     serviceNeeded: data.service_needed,
     siteLocation: data.site_location,
+    status: data.status as LeadStatus,
     assignedTo: data.assigned_to,
+    priority: data.priority || 'medium',
+    source: data.source,
+    notes: data.notes,
     createdAt: data.created_at,
     updatedAt: data.updated_at,
   };
@@ -74,12 +81,15 @@ export const createLead = async (lead: Omit<Lead, 'id' | 'createdAt' | 'updatedA
   }
 
   return {
-    ...data,
     id: data.id,
     customerName: data.customer_name,
     serviceNeeded: data.service_needed,
     siteLocation: data.site_location,
+    status: data.status as LeadStatus,
     assignedTo: data.assigned_to,
+    priority: data.priority || 'medium',
+    source: data.source,
+    notes: data.notes,
     createdAt: data.created_at,
     updatedAt: data.updated_at,
   };
@@ -109,12 +119,15 @@ export const updateLead = async (id: string, updates: Partial<Lead>): Promise<Le
   }
 
   return {
-    ...data,
     id: data.id,
     customerName: data.customer_name,
     serviceNeeded: data.service_needed,
     siteLocation: data.site_location,
+    status: data.status as LeadStatus,
     assignedTo: data.assigned_to,
+    priority: data.priority || 'medium',
+    source: data.source,
+    notes: data.notes,
     createdAt: data.created_at,
     updatedAt: data.updated_at,
   };
@@ -139,12 +152,15 @@ export const getLeadsByStatus = async (status: LeadStatus): Promise<Lead[]> => {
   }
 
   return data.map(lead => ({
-    ...lead,
     id: lead.id,
     customerName: lead.customer_name,
     serviceNeeded: lead.service_needed,
     siteLocation: lead.site_location,
+    status: lead.status as LeadStatus,
     assignedTo: lead.assigned_to,
+    priority: lead.priority || 'medium',
+    source: lead.source,
+    notes: lead.notes,
     createdAt: lead.created_at,
     updatedAt: lead.updated_at,
   }));
